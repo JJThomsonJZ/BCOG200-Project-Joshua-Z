@@ -10,10 +10,6 @@ Before running the program, make sure the following packages are installed:
 pip install pygame matplotlib psycopg2-binary
 ```
 
-Make sure you also have a PostgreSQL database running with a table created using
-
-You will need to edit the `save_results_to_db()` function to include your actual database.
-
 ---
 
 ### 2. Running the Program
@@ -64,6 +60,5 @@ The program is considered to be functioning correctly if:
 - Reaction time is visibly different across trials.
 - Results plot is shown with valid histogram.
 - Average and accuracy statistics are printed.
-- Data is saved in the PostgreSQL database without error.
 
 ---
