@@ -12,7 +12,6 @@ I ues Python and these libraries to built the experiment:
 
 - `pygame` 
 - `matplotlib`
-- `psycopg2` 
 
 ---
 
@@ -42,9 +41,6 @@ Runs a single trial: displays objects, tracks the user’s click, and measures h
 
 ### `run_experiment(screen, participant_code)`  
 Runs a full experiment session (usually around 15–20 trials), collects data, and returns it.
-
-### `save_results_to_db(data, participant_code)`  
-Saves all results to a PostgreSQL table using `psycopg2`. Each trial includes reaction time, accuracy, and other relevant info.
 
 ### `analyze_results(results)`  
 Generates a histogram of reaction times using `matplotlib`, and calculates summary stats like average time and accuracy.
@@ -84,7 +80,6 @@ If using the database option, the `attention_results` table looks like this:
 - Python
 - pygame  
 - matplotlib  
-- psycopg2 (for PostgreSQL database connection)
 
 ---
 
