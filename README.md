@@ -1,105 +1,99 @@
-## BCOG200 - Final Project: Visual Attention Experiment
-
-### Author: Joshua Zhao
-
----
-
-## Description
-
-This is a **visual attention test** that measures the response speed and accuracy of selecting a target object among distractors. The task simulates the classic selective attention experiment. Participants must find a specific target (e.g., red "O") among distractors (e.g., black "X", "T", etc.).
-
-The program is written in Python and uses:
-
-- `pygame`
-- `matplotlib`
-- `psycopg2`
-
-Experimental Flow:
-
-1. Instruction Screen
-
-2. Participant ID Input
-
-3. Multiple Trials
-
-4. Result Analysis
-
-5. End of Experiment Debriefing
+## BCOG200 - Final Project: Visual Attention Experiment  
+### Author: Joshua Zhao  
 
 ---
 
-## Function/Method Overview
+## Project Overview  
 
-### `show_instructions(screen)`
-Use pygame to display a full-screen instructions panel. Explain the task and controls before starting.
+This project is a **visual attention experiment** designed to test how quickly and accurately people can identify a target object (like a red "O") among several distractors (like black "X"s or "T"s). The goal is to simulate the classic selective attention task and collect data on participants’ reaction times and accuracy.
 
-### `get_participant_code(screen)`
-Prompt the user to enter a participant code, which will be tied to all saved trial data.
+The experiment is built using Python and makes use of the following libraries:
 
-### `generate_objects(num_objects, target_char)`
-- Randomly generate distractor letters and one colored target letter.
-- Place them at random screen coordinates.
-- Return a list of objects and their locations.
-
-### `run_trial(target_char, num_objects)`
-- Display a visual trial on the screen.
-- Capture the participant's clicks and measure response times.
-- Return correctness and reaction times.
-
-### `run_experiment(screen, principal_code)`
-- Run a random series of trials (e.g. 10-20).
-- Collect and return trial data.
-
-### `save_results_to_db(data, principal_code)`
-- Insert results into a PostgreSQL table using `psycopg2`.
-- Ensure each trial is associated with a participant.
-
-### `analyze_results(results)`
-- Display a reaction time histogram using `matplotlib`.
-- Compute and print the average response time and accuracy.
-
-### `show_debrief(screen)`
-- Display a thank you screen at the end of an experiment session.
+- `pygame` (for graphics and interaction)  
+- `matplotlib` (for data visualization)  
+- `psycopg2` (to connect to a PostgreSQL database)  
 
 ---
 
-## Example Use Case
+## How It Works  
 
-A cognitive science student is conducting a study of visual attention. Participants start the experiment, read the instructions, enter a participant code, and complete 15 trials. Afterwards, their results (response times and accuracy) are saved in a database and visualized as a histogram.
+Here’s a quick breakdown of how the experiment flows:
 
----
-
-## Input and Output Data Formats
-
-This experiment **does not require any external input files**. All visual objects are generated procedurally on each trial.
-
-If connected to a PostgreSQL database, the output table `attention_results` has the following structure:
-
-| Column name | Type | Description |
-|---------------------|-------------|---------------------------------------|
-| `id` | SERIAL | Primary key |
-| `participant_code` | VARCHAR | Participant ID entered by the user |
-| `trial_num` | INT | Trial sequence number |
-| `target_position` | TEXT | Position of the red target |
-| `click_position` | TEXT | Position clicked by the user |
-| `correct` | BOOLEAN | Whether the user clicked the target |
-| `reaction_time` | FLOAT | Response time (seconds) |
-| `timestamp` | TIMESTAMP | Automatically generated |
+1. **Welcome + Instructions** — A screen explains the task and how to interact with the program.  
+2. **Participant Code Input** — Each user enters a unique code so their data can be saved properly.  
+3. **Trials Begin** — The user completes multiple rounds of the attention task.  
+4. **Results + Analysis** — The program shows a graph of the user’s reaction times and provides feedback.  
+5. **Debriefing** — A final screen thanks the participant and ends the session.
 
 ---
 
-## Technologies used
+## Key Functions  
 
-- Python 3.x
-- pygame
-- matplotlib
-- psycopg2 + PostgreSQL
+### `show_instructions(screen)`  
+Displays an instruction screen with task details and control instructions using pygame.
+
+### `get_participant_code(screen)`  
+Lets the participant enter a unique ID to tie all trial data to their session.
+
+### `generate_objects(num_objects, target_char)`  
+Randomly places distractors and one colored target on the screen. Returns their coordinates and labels.
+
+### `run_trial(target_char, num_objects)`  
+Runs a single trial: displays objects, tracks the user’s click, and measures how long they take. Also records whether they clicked the correct object.
+
+### `run_experiment(screen, participant_code)`  
+Runs a full experiment session (usually around 15–20 trials), collects data, and returns it.
+
+### `save_results_to_db(data, participant_code)`  
+Saves all results to a PostgreSQL table using `psycopg2`. Each trial includes reaction time, accuracy, and other relevant info.
+
+### `analyze_results(results)`  
+Generates a histogram of reaction times using `matplotlib`, and calculates summary stats like average time and accuracy.
+
+### `show_debrief(screen)`  
+Shows a closing screen thanking the participant for completing the experiment.
 
 ---
 
-## Citations
+## Sample Use Case  
 
-Inspired by:
-Yung, A., Cardoso-Leite, P., Dale, G., Bavelier, D., & Green, C. S. (2015).
-*Methods for online testing of visual attention*. *Journal of Visualized Experiments: JoVE*, (96), 52470.
-https://doi.org/10.3791/52470
+Imagine a cognitive science student wants to explore how visual attention works. They run this experiment with a few classmates. Each participant enters their ID, reads the instructions, completes the trials, and sees their performance visualized in a graph. Their results are saved to a database for later analysis.
+
+---
+
+## Data and Storage  
+
+No external files are required — everything is generated during runtime.  
+
+If using the database option, the `attention_results` table looks like this:
+
+| Column name        | Type     | Description                               |
+|--------------------|----------|-------------------------------------------|
+| `id`               | SERIAL   | Auto-incremented primary key              |
+| `participant_code` | VARCHAR  | The participant’s entered ID              |
+| `trial_num`        | INT      | The trial number in sequence              |
+| `target_position`  | TEXT     | Coordinates of the target object          |
+| `click_position`   | TEXT     | Coordinates of where the participant clicked |
+| `correct`          | BOOLEAN  | Whether the participant found the target  |
+| `reaction_time`    | FLOAT    | Time taken to respond (in seconds)        |
+| `timestamp`        | TIMESTAMP| When the trial was completed              |
+
+---
+
+## Tools and Libraries Used  
+
+- Python 3.x  
+- pygame  
+- matplotlib  
+- psycopg2 (for PostgreSQL database connection)
+
+---
+
+## References  
+
+This experiment was inspired by:  
+Yung, A., Cardoso-Leite, P., Dale, G., Bavelier, D., & Green, C. S. (2015).  
+*Methods for online testing of visual attention*. *Journal of Visualized Experiments: JoVE*, (96), 52470.  
+[https://doi.org/10.3791/52470](https://doi.org/10.3791/52470)
+
+---
