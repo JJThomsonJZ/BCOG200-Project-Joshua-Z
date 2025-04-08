@@ -2,7 +2,6 @@ import pygame
 import time
 import random
 import matplotlib.pyplot as plt
-import psycopg2
 from datetime import datetime
 
 # Instruction-related Functions
@@ -33,12 +32,6 @@ def run_experiment(screen, participant_code, num_trials=10):
 
 # Analyze response data
 def analyze_results(results):
-    pass
-
-# Data Storage
-
-# Save all results to database
-def save_results_to_db(results, participant_code):
     pass
 
 # Main Program Entry Point
