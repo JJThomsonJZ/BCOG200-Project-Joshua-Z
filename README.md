@@ -82,7 +82,7 @@ If using the database option, the `attention_results` table looks like this:
 
 ## Tools and Libraries Used  
 
-- Python 3.x  
+- Python
 - pygame  
 - matplotlib  
 - psycopg2 (for PostgreSQL database connection)
