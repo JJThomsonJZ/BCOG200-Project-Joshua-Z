@@ -5,13 +5,14 @@
 
 ## Project Overview  
 
-This project is a **visual attention experiment** designed to test how quickly and accurately people can identify a target object (like a red "O") among several distractors (like black "X"s or "T"s). The goal is to simulate the classic selective attention task and collect data on participants’ reaction times and accuracy.
+This project is a **visual attention experiment** designed to test how quickly and accurately people can identify a target object among several distractors. 
+goal: to simulate the classic selective attention task and collect data on participants’ reaction times and accuracy.
 
-The experiment is built using Python and makes use of the following libraries:
+I ues Python and these libraries to built the experiment:
 
-- `pygame` (for graphics and interaction)  
-- `matplotlib` (for data visualization)  
-- `psycopg2` (to connect to a PostgreSQL database)  
+- `pygame` 
+- `matplotlib`
+- `psycopg2` 
 
 ---
 
@@ -19,21 +20,19 @@ The experiment is built using Python and makes use of the following libraries:
 
 Here’s a quick breakdown of how the experiment flows:
 
-1. **Welcome + Instructions** — A screen explains the task and how to interact with the program.  
-2. **Participant Code Input** — Each user enters a unique code so their data can be saved properly.  
-3. **Trials Begin** — The user completes multiple rounds of the attention task.  
-4. **Results + Analysis** — The program shows a graph of the user’s reaction times and provides feedback.  
-5. **Debriefing** — A final screen thanks the participant and ends the session.
-
----
+1. **Welcome + Instructions**
+2. **Participant Code Input**
+3. **Trials Begin** 
+4. **Results + Analysis**
+5. **Debriefing**
 
 ## Key Functions  
 
 ### `show_instructions(screen)`  
-Displays an instruction screen with task details and control instructions using pygame.
+Instruction screen: task details & control instructions
 
 ### `get_participant_code(screen)`  
-Lets the participant enter a unique ID to tie all trial data to their session.
+enter ID for data tie with session.
 
 ### `generate_objects(num_objects, target_char)`  
 Randomly places distractors and one colored target on the screen. Returns their coordinates and labels.
