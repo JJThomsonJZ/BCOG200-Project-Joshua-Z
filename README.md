@@ -8,11 +8,6 @@
 
 This experiment performs a visual selective attention task in Python. It collects the time taken and accuracy of subjects in being able to identify uniquely colored targets from distractors. The task is to replicate standard paradigms of cognitive psychology and record behavioral responses in reaction time and accuracy.
 
-This project is written in Python and mainly uses:
-
-* `pygame` for graphical stimulus presentation and user interaction
-* `matplotlib` for data visualization and summary analysis
-
 ## How It Works
 
 1. **Welcome Screen & Instructions** – Introduction to the task
