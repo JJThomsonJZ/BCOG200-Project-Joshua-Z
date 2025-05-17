@@ -1,21 +1,19 @@
 # Visual Attention Experiment
 
-**Course:** BCOG 200 – Brain and Cognitive Science
+**Course:** BCOG 200
 **Author:** Joshua Zhao
-**Repository:** \[https://github.com/JJThomsonJZ/BCOG200-Project-Joshua-Z]
+**Repository:** \[https://github.com/JJThomsonJZ/BCOG200-Project-Joshua-Z/tree/main]
 
 ## Overview
 
-This project implements a visual selective attention experiment in Python. The experiment tests how quickly and accurately participants can identify a uniquely colored target among a field of distractors. The goal is to simulate classic paradigms in cognitive psychology and collect behavioral data on reaction time and accuracy.
+This experiment performs a visual selective attention task in Python. It collects the time taken and accuracy of subjects in being able to identify uniquely colored targets from distractors. The task is to replicate standard paradigms of cognitive psychology and record behavioral responses in reaction time and accuracy.
 
-This project is written in Python and uses:
+This project is written in Python and mainly uses:
 
 * `pygame` for graphical stimulus presentation and user interaction
 * `matplotlib` for data visualization and summary analysis
 
 ## How It Works
-
-The program walks participants through a series of trials in which they must find and click on a target object as quickly and accurately as possible. The experiment includes:
 
 1. **Welcome Screen & Instructions** – Introduction to the task
 2. **Participant Code Input** – Anonymous code entry to identify data
@@ -24,8 +22,6 @@ The program walks participants through a series of trials in which they must fin
 5. **Debriefing Screen** – Thank-you message and closing
 
 ## Code Structure
-
-The experiment is organized with modular functions to ensure clarity and reuse:
 
 | Function                                     | Description                                                                      |
 | -------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -39,11 +35,11 @@ The experiment is organized with modular functions to ensure clarity and reuse:
 
 ## Sample Use Case
 
-A cognitive science student interested in attentional mechanisms can run this experiment with classmates. Each participant enters an ID, completes visual search trials, and receives immediate feedback via graphs. Their results can then be compared and interpreted to understand visual processing dynamics.
+A cognitive science major who has an interest in attention processes can conduct this experiment with other classmates. Participants input an ID, do visual search trials, and get instant feedback in the form of graphs. One can then compare and analyze their respective outcomes to learn about visual processing dynamics.
 
-## Data Storage (Optional)
+## Data Storage
 
-If using a database to store results, the table `attention_results` may include:
+to store results, the table `attention_results` include:
 
 | Column Name       | Type      | Description                                    |
 | ----------------- | --------- | ---------------------------------------------- |
@@ -56,24 +52,22 @@ If using a database to store results, the table `attention_results` may include:
 | reaction\_time    | FLOAT     | Time taken in seconds                          |
 | timestamp         | TIMESTAMP | When the trial occurred                        |
 
-> In the version submitted here, data is stored in memory and optionally saved to `.csv`.
+>data is saved to `.csv` at data folder.
 
 ## Tools and Libraries Used
 
-* Python 3.x
+* Python 3.13
 * Pygame
 * Matplotlib
-* (Optional: SQLite3 or Pandas for saving/analyzing data)
-
+* Pandas
+  
 ## Project Highlights
 
-The project emphasizes:
-
-* Modular design with clearly defined functions
-* Real-time stimulus interaction via mouse clicks
+* Modular structure with well-defined functions
+* Mouse click real-time stimulus interaction
 * Immediate post-trial feedback
 * Data visualization and accuracy tracking
-* Extensible design for future additions (e.g., difficulty scaling, distractor similarity)
+* Extensibility for future additions (such as scaling difficulty, similarity of distractors)
 
 ## References
 
