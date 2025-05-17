@@ -1,93 +1,82 @@
-## BCOG200 - Final Project: Visual Attention Experiment  
-### Author: Joshua Zhao  
+# Visual Attention Experiment
 
----
+**Course:** BCOG 200 – Brain and Cognitive Science
+**Author:** Joshua Zhao
+**Repository:** \[https://github.com/JJThomsonJZ/BCOG200-Project-Joshua-Z]
 
-## Project Overview  
+## Overview
 
-This project is a **visual attention experiment** designed to test how quickly and accurately people can identify a target object among several distractors. 
-goal: to simulate the classic selective attention task and collect data on participants’ reaction times and accuracy.
+This project implements a visual selective attention experiment in Python. The experiment tests how quickly and accurately participants can identify a uniquely colored target among a field of distractors. The goal is to simulate classic paradigms in cognitive psychology and collect behavioral data on reaction time and accuracy.
 
-I ues Python and these libraries to built the experiment:
+This project is written in Python and uses:
 
-- `pygame` 
-- `matplotlib`
+* `pygame` for graphical stimulus presentation and user interaction
+* `matplotlib` for data visualization and summary analysis
 
----
+## How It Works
 
-## How It Works  
+The program walks participants through a series of trials in which they must find and click on a target object as quickly and accurately as possible. The experiment includes:
 
-Here’s a quick breakdown of how the experiment flows:
+1. **Welcome Screen & Instructions** – Introduction to the task
+2. **Participant Code Input** – Anonymous code entry to identify data
+3. **Attention Trials** – Multiple trials with randomized target placement
+4. **Results Summary** – Visualization of reaction times and summary stats
+5. **Debriefing Screen** – Thank-you message and closing
 
-1. **Welcome + Instructions**
-2. **Participant Code Input**
-3. **Trials Begin** 
-4. **Results + Analysis**
-5. **Debriefing**
+## Code Structure
 
-## Key Functions  
+The experiment is organized with modular functions to ensure clarity and reuse:
 
-### `show_instructions(screen)`  
-Instruction screen: task details & control instructions
+| Function                                     | Description                                                                      |
+| -------------------------------------------- | -------------------------------------------------------------------------------- |
+| `show_instructions(screen)`                  | Displays task instructions using Pygame                                          |
+| `get_participant_code(screen)`               | Prompts user for a participant ID                                                |
+| `generate_objects(num_objects, target_char)` | Generates coordinates and symbols for the target and distractors                 |
+| `run_trial(target_char, num_objects)`        | Executes a single visual trial and records click accuracy and timing             |
+| `run_experiment(screen, participant_code)`   | Loops through all trials and compiles performance data                           |
+| `analyze_results(results)`                   | Uses matplotlib to display reaction time histograms and compute average accuracy |
+| `show_debrief(screen)`                       | Displays end-of-experiment message                                               |
 
-### `get_participant_code(screen)`  
-enter ID for data tie with session.
+## Sample Use Case
 
-### `generate_objects(num_objects, target_char)`  
-Randomly places distractors and one colored target on the screen. Returns their coordinates and labels.
+A cognitive science student interested in attentional mechanisms can run this experiment with classmates. Each participant enters an ID, completes visual search trials, and receives immediate feedback via graphs. Their results can then be compared and interpreted to understand visual processing dynamics.
 
-### `run_trial(target_char, num_objects)`  
-Runs a single trial: displays objects, tracks the user’s click, and measures how long they take. Also records whether they clicked the correct object.
+## Data Storage (Optional)
 
-### `run_experiment(screen, participant_code)`  
-Runs a full experiment session (usually around 15–20 trials), collects data, and returns it.
+If using a database to store results, the table `attention_results` may include:
 
-### `analyze_results(results)`  
-Generates a histogram of reaction times using `matplotlib`, and calculates summary stats like average time and accuracy.
+| Column Name       | Type      | Description                                    |
+| ----------------- | --------- | ---------------------------------------------- |
+| id                | SERIAL    | Auto-incremented ID                            |
+| participant\_code | VARCHAR   | User-entered participant ID                    |
+| trial\_num        | INT       | Trial number                                   |
+| target\_position  | TEXT      | Coordinates of the target                      |
+| click\_position   | TEXT      | Where the user clicked                         |
+| correct           | BOOLEAN   | Whether the user clicked on the correct object |
+| reaction\_time    | FLOAT     | Time taken in seconds                          |
+| timestamp         | TIMESTAMP | When the trial occurred                        |
 
-### `show_debrief(screen)`  
-Shows a closing screen thanking the participant for completing the experiment.
+> In the version submitted here, data is stored in memory and optionally saved to `.csv`.
 
----
+## Tools and Libraries Used
 
-## Sample Use Case  
+* Python 3.x
+* Pygame
+* Matplotlib
+* (Optional: SQLite3 or Pandas for saving/analyzing data)
 
-Imagine a cognitive science student wants to explore how visual attention works. They run this experiment with a few classmates. Each participant enters their ID, reads the instructions, completes the trials, and sees their performance visualized in a graph. Their results are saved to a database for later analysis.
+## Project Highlights
 
----
+The project emphasizes:
 
-## Data and Storage  
+* Modular design with clearly defined functions
+* Real-time stimulus interaction via mouse clicks
+* Immediate post-trial feedback
+* Data visualization and accuracy tracking
+* Extensible design for future additions (e.g., difficulty scaling, distractor similarity)
 
-No external files are required — everything is generated during runtime.  
+## References
 
-If using the database option, the `attention_results` table looks like this:
-
-| Column name        | Type     | Description                               |
-|--------------------|----------|-------------------------------------------|
-| `id`               | SERIAL   | Auto-incremented primary key              |
-| `participant_code` | VARCHAR  | The participant’s entered ID              |
-| `trial_num`        | INT      | The trial number in sequence              |
-| `target_position`  | TEXT     | Coordinates of the target object          |
-| `click_position`   | TEXT     | Coordinates of where the participant clicked |
-| `correct`          | BOOLEAN  | Whether the participant found the target  |
-| `reaction_time`    | FLOAT    | Time taken to respond (in seconds)        |
-| `timestamp`        | TIMESTAMP| When the trial was completed              |
-
----
-
-## Tools and Libraries Used  
-
-- Python
-- pygame  
-- matplotlib  
-
----
-
-## References  
-
-This experiment was inspired by:  
-Yung, A., Cardoso-Leite, P., Dale, G., Bavelier, D., & Green, C. S. (2015).  
-*Methods for online testing of visual attention*. *Journal of Visualized Experiments: JoVE*, (96), 52470.  
+Yung, A., Cardoso-Leite, P., Dale, G., Bavelier, D., & Green, C. S. (2015).
+*Methods for online testing of visual attention.* Journal of Visualized Experiments: JoVE, (96), 52470.
 [https://doi.org/10.3791/52470](https://doi.org/10.3791/52470)
-
----
