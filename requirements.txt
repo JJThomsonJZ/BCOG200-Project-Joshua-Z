@@ -1,0 +1,5 @@
+pygame
+matplotlib
+pandas
+
+# please ran this line: pip install -r requirements.txt

@@ -18,6 +18,7 @@ This experiment performs a visual selective attention task in Python. It collect
 
 ## Code Structure
 
+
 | Function                                     | Description                                                                      |
 | -------------------------------------------- | -------------------------------------------------------------------------------- |
 | `show_instructions(screen)`                  | Displays task instructions using Pygame                                          |
@@ -36,6 +37,7 @@ A cognitive science major who has an interest in attention processes can conduct
 
 to store results, the table `attention_results` include:
 
+
 | Column Name       | Type      | Description                                    |
 | ----------------- | --------- | ---------------------------------------------- |
 | id                | SERIAL    | Auto-incremented ID                            |
@@ -47,15 +49,15 @@ to store results, the table `attention_results` include:
 | reaction\_time    | FLOAT     | Time taken in seconds                          |
 | timestamp         | TIMESTAMP | When the trial occurred                        |
 
->data is saved to `.csv` at data folder.
+> data is saved to `.csv` at data folder.
 
-## Tools and Libraries Used
+## Tools and Libraries Used (see requirements.txt for environment setup)
 
 * Python 3.13
 * Pygame
 * Matplotlib
 * Pandas
-  
+
 ## Project Highlights
 
 * Modular structure with well-defined functions
