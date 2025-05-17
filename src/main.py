@@ -6,27 +6,41 @@ from datetime import datetime
 import csv
 import os
 
-# ----------------------------
-# Instruction-related Functions
-# ----------------------------
-
 def show_instructions(screen):
     font = pygame.font.SysFont(None, 36)
     screen.fill((255, 255, 255))
+
     lines = [
-        "欢迎参加视觉注意力实验！",
-        "任务说明：请在多个字母中尽快点击红色的 'O' 字母。",
-        "按任意键开始。"
+        "Welcome to the Visual Attention Experiment!",
+        "Task: Quickly click the red 'O' among other letters.",
+        "Press the SPACEBAR to begin."
     ]
+
+    # Get screen size
+    screen_width, screen_height = screen.get_size()
+
+    # Render and center each line
+    total_height = len(lines) * 50
+    start_y = (screen_height - total_height) // 2
+
     for i, line in enumerate(lines):
         text = font.render(line, True, (0, 0, 0))
-        screen.blit(text, (100, 100 + i * 40))
+        text_rect = text.get_rect(center=(screen_width // 2, start_y + i * 50))
+        screen.blit(text, text_rect)
+
     pygame.display.flip()
+
+    # Wait for SPACEBAR to continue
     waiting = True
     while waiting:
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
             if event.type == pygame.KEYDOWN:
-                waiting = False
+                if event.key == pygame.K_SPACE:
+                    waiting = False
+
 
 
 def get_participant_code(screen):
