@@ -1,64 +1,35 @@
 # Test Plan
 
-## Test Scenario: Full Experiment Run
+## Code Testing Explanation
 
-### 1. Environment Setup
+Because this project uses `pygame` and graphical user interactions (like mouse clicks), standard unit testing using `pytest` is not practical. Instead, I provide **three manual ways** to confirm the program works as expected.
 
-Before running the program, make sure the following packages are installed:
+### 1. Instruction and Input Screen Loads Properly
 
-```bash
-pip install pygame matplotlib psycopg2-binary
-```
+* When the program starts, it should first show a full-screen welcome screen with instructions.
+* After pressing SPACE, it should ask the RA to type in a Participant ID.
+* If these screens appear and can be interacted with (ID typed in, ENTER works), that confirms:
 
----
+  * `show_instructions()` function works
+  * `get_participant_code()` function works
 
-### 2. Running the Program
+### 2. Trials Display Correctly and React to Clicks
 
-Run the Python script from the terminal:
+* During the experiment phase, 20 trials should run one by one.
+* Each trial should show exactly **one red 'O'** among **other black letters**.
+* Clicking the red "O" or anywhere else should advance the screen.
+* This confirms:
 
-```bash
-python main.py
-```
+  * `generate_objects()` generates letters correctly
+  * `run_trial()` responds to mouse clicks and records correct data
 
-### 3. Expected User Flow
+### 3. Data is Saved and Analysis is Displayed
 
-1. **Instruction Screen**  
+* After all trials and the debriefing screen, if the RA presses ENTER:
 
-2. **Participant Code Entry**  
+  * A histogram of reaction times should appear (using `matplotlib`)
+  * A `.csv` file should appear in the `data/` folder named after the participant
+* This confirms:
 
-3. **Trial Execution**  
-   - 10 trials are shown, each with letters randomly placed.
-   - One letter is red (the target).
-   - User must click the red letter as fast as possible.
-   - After each trial, the next begins automatically.
-
-4. **Post-Experiment Analysis**  
-   - A matplotlib window displays a histogram of reaction times.
-   - The terminal prints:
-     - Average reaction time
-     - Accuracy (percentage of trials where target was correctly clicked)
-
-5. **Data Storage**  
-
-6. **Debrief Message**  
----
-
-## Sample Data
-
-| participant_code | trial_num | target_position | click_position | correct | reaction_time |
-|------------------|-----------|------------------|-----------------|---------|----------------|
-| P001             | 3         | (115, 206)       | (110, 200)       | true    | 1.28           |
-
----
-
-## Evaluation Criteria
-
-The program is considered to be functioning correctly if:
-
-- All screens render without error.
-- Trials can be completed with mouse clicks.
-- Reaction time is visibly different across trials.
-- Results plot is shown with valid histogram.
-- Average and accuracy statistics are printed.
-
----
+  * `save_results_to_db()` works correctly
+  * `analyze_results()` runs and displays results
